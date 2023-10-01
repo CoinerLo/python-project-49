@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 from brain_games import cli
 from random import randrange
+from brain_games import utils
 import prompt
-
-number_of_rounds = 3
 
 
 def qyestion():
-    number = randrange(1000001)
+    number = randrange(1, 1000001)
     correct_answer = 'yes' if number % 2 == 0 else 'no'
     print(f'Question: {number}')
     answer = prompt.string('Your answer: ')
@@ -18,7 +17,7 @@ def main():
     name = cli.welcome_user()
     print('Answer "yes" if the number is even, otherwise answer "no".')
     count_answers = 0
-    while count_answers < number_of_rounds:
+    while count_answers < utils.number_of_rounds:
         (correct_answer, answer) = qyestion()
         if answer.lower() == correct_answer:
             count_answers += 1
