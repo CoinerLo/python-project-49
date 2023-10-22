@@ -1,34 +1,36 @@
 #!/usr/bin/env python3
 from brain_games import cli
-from random import randrange, randint
+from random import randrange
 from brain_games import utils
 import prompt
 
 
 def calculate_result_of_operation(number_first, number_second):
-    operations = ['+', '-', '*']
-    operation_index = randint(0, len(operations) - 1)
-    if operation_index == 0:
-        return (number_first + number_second, operations[operation_index])
-    if operation_index == 1:
-        return (number_first - number_second, operations[operation_index])
-    if operation_index == 2:
-        return (number_first * number_second, operations[operation_index])
+    a = number_first
+    b = number_second
+
+    while a != 0 and b != 0:
+        if a > b:
+            a = a % b
+        else:
+            b = b % a
+
+    return a + b
 
 
 def question():
-    number_first = randrange(1000)
-    number_two = randrange(1000)
-    (correct_answer, operator) = calculate_result_of_operation(number_first, number_two)
+    number_first = randrange(100)
+    number_two = randrange(100)
+    correct_answer = calculate_result_of_operation(number_first, number_two)
 
-    print(f'Question: {number_first} {operator} {number_two}')
+    print(f'Question: {number_first} {number_two}')
     answer = prompt.string('Your answer: ')
     return (correct_answer, answer)
 
 
 def main():
     name = cli.welcome_user()
-    print('What is the result of the expression?')
+    print('Find the greatest common divisor of given numbers.')
     count_answers = 0
     while count_answers < utils.number_of_rounds:
         (correct_answer, answer) = question()

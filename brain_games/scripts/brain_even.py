@@ -5,7 +5,7 @@ from brain_games import utils
 import prompt
 
 
-def qyestion():
+def question():
     number = randrange(1, 1000001)
     correct_answer = 'yes' if number % 2 == 0 else 'no'
     print(f'Question: {number}')
@@ -18,7 +18,7 @@ def main():
     print('Answer "yes" if the number is even, otherwise answer "no".')
     count_answers = 0
     while count_answers < utils.number_of_rounds:
-        (correct_answer, answer) = qyestion()
+        (correct_answer, answer) = question()
         if answer.lower() == correct_answer:
             count_answers += 1
             print('Correct!')
